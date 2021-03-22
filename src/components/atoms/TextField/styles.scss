@@ -1,0 +1,54 @@
+// TEXT FIELD
+@import 'assets/scss/styles.scss';
+
+.text-field {
+  position: relative;
+  padding-bottom: 30px;
+  &__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: $grey-text-color;
+    text-transform: capitalize;
+    transition-duration: .3s;
+    pointer-events: none;
+  }
+  &__input {
+    width: 100%;
+    border-bottom: 1px solid $grey-text-color;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 0;
+    background-color: transparent;
+    transition: 0.3s;
+    &:disabled {
+      background-color: inherit;
+    }
+  }
+  &__input:focus + &__label,
+  &__input.is-valid + &__label {
+    top: -24px;
+    font-size: 12px;
+    color: $primary-text-color;
+  }
+  &__input:focus,
+  &__input.is-valid {
+    border-color: $primary-bg-color;
+  }
+  &__input.has-error + &__label {
+    top: -24px;
+    font-size: 12px;
+    color: $error-text-color;
+  }
+  &__input.has-error {
+    border-color: $error-bg-color;
+  }
+  &__error {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    display: inline-block;
+    font-size: 12px;
+    color: $error-text-color;
+  }
+}

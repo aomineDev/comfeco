@@ -1,0 +1,41 @@
+// HEADER
+@import 'assets/scss/styles.scss';
+
+.header {
+  position: relative;
+  height: 80px;
+  background-color: $bg-color;
+  &::before {
+    @include primary-gradient;
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+  }
+  &__wrapper {
+    @extend %container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__logo {
+    height: 60px;
+  }
+  &__auth {
+    display: flex;
+    column-gap: 15px;
+  }
+  @include desktop($bp-sm-2) {
+		&__auth {
+			display: none;
+		}
+  }
+  @include desktop($bp-xs-4) {
+		height: 60px;
+		&__logo {
+			height: 40px;
+		}
+  }
+}

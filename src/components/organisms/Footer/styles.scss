@@ -1,0 +1,28 @@
+// FOOTER
+@import 'assets/scss/styles.scss';
+
+.footer {
+  background-color: $bg-color;
+  border-top: 1px solid $grey-lighten-2;
+  &__wrapper {
+    @extend %container;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: {
+      top: 20px;
+      bottom: 20px;
+    }
+    @include desktop($bp-xs-4) {
+      flex-direction: column-reverse;
+      row-gap: 20px;
+    }
+  }
+  &__copy {
+    color: $grey-text-color;
+  }
+  &__socials {
+    display: flex;
+    column-gap: 30px;
+  }
+}

@@ -1,0 +1,16 @@
+// AUTH FORM
+@import 'assets/scss/styles.scss';
+
+.auth-form {
+  @extend %flex-center;
+  flex-grow: 1;
+  &__wrapper {
+    width: 100%;
+    max-width: 400px;
+    margin: {
+      top: 20px;
+      bottom: 20px;
+    }
+    padding: $app-xs-padding;
+  }
+}

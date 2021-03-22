@@ -1,0 +1,44 @@
+// SOCIAL LINk
+@import 'assets/scss/styles.scss';
+
+.social-link {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: inherit;
+  }
+  &::before {
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    @include primary-gradient(-45);
+    transition-duration: 1s;
+    transition-timing-function: cubic-bezier(.42,.97,.52,1.49);
+    z-index: 1;
+  }
+  &:hover::before {
+    transform: rotate(540deg);
+  }
+  &::after {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $bg-color;
+    z-index: 2;
+  }
+  &__icon {
+    @include primary-gradient(-45);
+    @extend %absolute-center;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 20px;
+    z-index: 3;
+  }
+}

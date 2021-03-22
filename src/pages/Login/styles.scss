@@ -1,0 +1,19 @@
+// LOGIN
+@import 'assets/scss/styles.scss';
+
+.login {
+  &__forget-pass {
+    margin-bottom: 10px;
+  }
+  &__forget-pass,
+  &__to-register {
+    font-size: 14px;
+    a {
+      color: $secondary-text-color;
+      font-weight: 500;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

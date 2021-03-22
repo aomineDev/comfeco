@@ -1,0 +1,16 @@
+// FORGOT PASSWORD
+@import 'assets/scss/styles.scss';
+
+.forgotpassword {
+    &__title {
+        color: $primary;
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    &__text {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,53 @@
+// Checkbox
+@import 'assets/scss/styles.scss';
+
+.checkbox {
+  &__input {
+    display: none;
+  }
+  &__input:disabled + &__label {
+    pointer-events: none;
+    color: $disabled-text-color;
+    &::before {
+      border-color: $disabled-bg-color;
+    }
+    &::after {
+      border-right-color: $disabled-bg-color;
+      border-bottom-color: $disabled-bg-color;
+    }
+  }
+  &__label {
+    @extend %tap-highlight;
+    cursor: pointer;
+    position: relative;
+    margin-left: 25px;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+    }
+    &::before {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 2px solid $primary-bg-color;
+      transform: translate(calc(-100% - 5px), -50%);
+    }
+    &::after {
+      pointer-events: none;
+      width: 5px;
+      height: 10px;
+      border-right: 2px solid $primary-bg-color;
+      border-bottom: 2px solid $primary-bg-color;
+      transform: translate(calc(-100% - 12px), calc(-50% - 1px)) rotate(45deg) scale(1.2);
+      opacity: 0;
+      transition: .3s;
+    }
+  }
+  &__input:checked + &__label::after {
+    transform: translate(calc(-100% - 12px), calc(-50% - 1px)) rotate(45deg) scale(1);
+    opacity: 1;
+  }  
+}

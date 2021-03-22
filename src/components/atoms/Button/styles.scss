@@ -1,0 +1,255 @@
+// BUTTON
+@import 'assets/scss/styles.scss';
+
+.btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 64px;
+  min-height: 36px;
+  background-color: $grey-bg-color;
+  padding: {
+    left: 16px;
+    right: 16px;
+  };
+  border-radius: 4px;
+  color: $dark-text-color;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  transition-duration: .3s;
+  overflow: hidden;
+  &:hover {
+    background-color: darken($grey-bg-color, 2%);
+  }
+  &__content {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    pointer-events: none;
+  }
+  &__icon {
+    font-size: 18px;
+  }
+  &__loader {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    border: 2px solid transparent;
+    border-top-color: $dark-bg-color;
+    border-left-color: $dark-bg-color;
+    border-radius: 50%;
+    animation: load .5s linear infinite forwards;
+  }
+  &__ripple {
+    position: absolute;
+    width: 0;
+    height: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: $dark-bg-color;
+    pointer-events: none;
+    animation: ripple .5s linear;
+    opacity: .5;
+  }
+
+  @each $name, $color in $colors {
+    &--#{$name} {
+      background-color: $color;
+      & .btn__ripple {
+        background-color: $light-bg-color;
+      }
+      @if $color == $yellow or $color == $white {
+        &:hover {
+          background-color: darken($color, 5%);
+        }
+      } @else {
+        color: $light-text-color;
+        &:hover {
+          background-color: lighten($color, 5%);
+        }
+        & .btn__loader {
+          border-top-color: $light-bg-color;
+          border-left-color: $light-bg-color;
+        }
+      }
+    }
+  }
+
+  &--small {
+    min-width: 50px;
+    min-height: 28px;
+    padding: {
+      left: 12px;
+      right: 12px;
+    };
+    font-size: 12px;
+    & .btn__icon {
+      font-size: 16px;
+    }
+  }
+
+  &--x-small {
+    min-width: 36px;
+    min-height: 20px;
+    padding: {
+      left: 8px;
+      right: 8px;
+    };
+    font-size: 10px;
+    & .btn__icon {
+      font-size: 14px;
+    }
+  }
+
+  &--large {
+    min-width: 78px;
+    min-height: 44px;
+    padding: {
+      left: 20px;
+      right: 20px;
+    };
+  }
+
+  &--x-large {
+    min-width: 92px;
+    min-height: 52px;
+    padding: {
+      left: 24px;
+      right: 24px;
+    };
+    font-size: 16px;
+    & .btn__icon {
+      font-size: 20px;
+    }
+  }
+
+  &--has-elevation {
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),
+    0 2px 2px rgba(0,0,0,.14),
+    0 1px 5px rgba(0,0,0,.12);
+  }
+
+  &--is-block {
+    width: 100%;
+  }
+
+  &--is-rounded {
+    border-radius: 18px;
+  }
+
+  &--is-text {
+    background-color: transparent;
+    box-shadow: none;
+    color: $grey-text-color;
+    &:hover {
+      background-color: rgba($grey-text-color, 0.05);
+    }
+    @each $name, $color in $colors {
+      &.btn--#{$name} {
+        color: $color;
+        &:hover {
+          background-color: rgba($color, 0.075);
+        }
+        & .btn__ripple {
+          background-color: $color;
+          opacity: .2;
+        }
+        & .btn__loader {
+          border-top-color: $color;
+          border-left-color: $color;
+        }
+      }
+    }
+  }
+
+  &--is-outlined {
+    @extend .btn--is-text;
+    border: 1px solid $grey-text-color;
+    @each $name, $color in $colors {
+      &.btn--#{$name} {
+        border: 1px solid $color; 
+      }
+    }
+  }
+
+  &--is-icon {
+    min-width: 56px;
+    min-height: 56px;
+    border-radius: 50%;
+    padding: 0;
+    & .btn__icon {
+      font-size: 20px;
+    }
+    &.btn--small {
+      min-width: 40px;
+      min-height: 40px;
+    }
+    &.btn--x-small {
+      min-width: 32px;
+      min-height: 32px;
+      & .btn__icon {
+        font-size: 16px;
+      }
+    }
+    &.btn--large {
+      min-width: 64px;
+      min-height: 64px;
+      & .btn__icon {
+        font-size: 24px;
+      }
+    }
+    &.btn--x-large {
+      min-width: 72px;
+      min-height: 72px;
+      & .btn__icon {
+        font-size: 28px;
+      }
+    }
+  }
+
+  &--is-loading,
+  &--is-text#{&}--is-loading,
+  &--is-outlined#{&}--is-loading {
+    pointer-events: none;
+    color: transparent;
+    transition: 0s;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    background-color: $disabled-bg-color;
+    color: $disabled-text-color;
+    box-shadow: none;
+  }
+  &--is-text#{&}:disabled,
+  &--is-outlined#{&}:disabled {
+    background-color: $bg-color;
+  }
+  &--is-outlined#{&}:disabled {
+    border: 1px solid $disabled-bg-color; 
+  }
+}
+
+@keyframes load {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes ripple {
+	100% {
+		width: 500px;
+		height: 500px;
+		opacity: 0;
+	}
+}
